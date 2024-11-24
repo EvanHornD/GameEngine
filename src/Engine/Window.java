@@ -20,7 +20,9 @@ public class Window {
     int width, height;
     String title;
     private long glfwWindow;
-    float r,g,b = 0.0f;
+    float r = 1.0f;
+    float g = 1.0f;
+    float b = 1.0f;
 
     private static Scene currentScene;
 
@@ -53,6 +55,10 @@ public class Window {
             Window.window = new Window();
         }
         return Window.window;
+    }
+
+    public static Scene getScene(){
+        return get().currentScene;
     }
 
     public void run(){

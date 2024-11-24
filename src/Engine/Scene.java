@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Engine.renderer.Camera;
+import Engine.renderer.Renderer;
 
 public abstract class Scene {
 
+    protected Renderer renderer = new Renderer();
     protected Camera camera;
     private boolean isRunning = false;
 
@@ -22,6 +24,7 @@ public abstract class Scene {
     public void start(){
         for (GameObject object : gameObjects) {
             object.start();
+            this.renderer.add(object);
         }
         isRunning = true;
     }
@@ -32,7 +35,12 @@ public abstract class Scene {
         } else {
             gameObjects.add(object);
             object.start();
+            this.renderer.add(object);
         }
+    }
+
+    public Camera getCamera(){
+        return this.camera;
     }
 
     public abstract void update(float dt);
